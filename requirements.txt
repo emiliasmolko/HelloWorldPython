@@ -1,2 +1,2 @@
-Flask==0.12.2
+Flask==0.12.3
 cf-deployment-tracker==1.0.4
