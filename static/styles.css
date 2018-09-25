@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #00f;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+nav {
+    float: left;
+    width: 10%;
+	height: 100%;
+    background: #ccc;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+article {
+    float: left;
+    padding: 20px;
+    width:90%;
+    background-color: #f1f1f1;
+    
+}
+
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+table#gamesDatabase {
+    border-spacing: 1px;
+	width:100%;
+	border: 3px solid #eee;
+}
+table#gamesDatabase tr:nth-child(even) {
+    background-color: #eee;
+}
+table#gamesDatabase tr:nth-child(odd) {
+   background-color: #fff;
+}
+table#gamesDatabase th {
+    background-color: #000;
+    color: white;
+}
+table#gamesDatabase th, table#gamesDatabase td {
+    border: 1px solid #eee;
+    padding: 15px;
+}
+
+table#gameInputTable {
+    border-spacing: 1px;
+	border: 3px solid #eee;
+}
+table#gameInputTable tr:nth-child(even) {
+    background-color: #eee;
+}
+table#gameInputTable tr:nth-child(odd) {
+   background-color: #fff;
+}
+table#gameInputTable th, table#gameInputTable td {
+    border: none;
+    padding: 15px;
+}

@@ -1,0 +1,5 @@
+---
+applications:
+ - name: HelloWorldPython
+   host: Emilia
+   memory: 128M
