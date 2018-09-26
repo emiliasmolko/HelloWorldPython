@@ -3,14 +3,14 @@ import cf_deployment_tracker
 import os
 import json
 
-# Sterujemy instalacja 
+# deployment tracking
 cf_deployment_tracker.track()
 
 app = Flask(__name__)
 
 
-# W IBM Cloud, bierzemy numer portu ze zmiennych srodowiskowych PORT
-# lokalnie ustawiamy 8000
+# for IBM Cloud port is taken from os.getenv()
+# for local installation 8000
 port = int(os.getenv('PORT', 8000))
 
 @app.route('/')
