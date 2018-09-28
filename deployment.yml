@@ -1,0 +1,23 @@
+# Update <REGISTRY> <NAMESPACE> values before use
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-python
+  labels:
+    app: hello-world-python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-python
+  template:
+    metadata:
+      labels:
+        app: hello-world-python
+    spec:
+      containers:
+      - name: hello-world-python
+        image: eu-gb.bluemix.net/python/myapp:v1.0.0
+        ports:
+        - containerPort: 8000
+
