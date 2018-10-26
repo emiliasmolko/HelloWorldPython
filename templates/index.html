@@ -1,23 +1,71 @@
 
 <html>
+
 <head>
-    <title>Moja pierwsza strona</title>
-	<link href="static/styles.css" rel="stylesheet">
+    <title>Strona moich gier planszowych</title>
+    <link href="static/styles.css" rel="stylesheet">
 </head>
 
 <body>
+
 <header>
 <a href="https://www.uniwersytetdzieci.pl/"> 
 <img src="static/ud-logo.png" alt="Uniwersytet Dzieci"></a> 
-<h2>Hello World!!!</h2>
+<h2>Strona moich gier planszowych</h2>
 </header>
 <section>
-<h3>To jest moja pierwsza własna strona webowa. Za chwilę się nauczę jak zmienić jej wygląd. Zajrzyj pod ten adres za jakiś czas, a zobaczysz co się zmieniło!</h3>
-
+ <nav>
+    <ul>
+      <li><a href="#gamesDatabase" >Lista gier</a></li>
+    </ul>
+  </nav>
+  <article>
+    <div id="gamesList">
+		<h2>Zgromadziłam informacje o grach, w które kiedyś grałam lub chcę zagarać.</h2> </br>
+		Jeśli szukasz czegoś szczególnego <input id="info" placeholder="Pisz tutaj..." type="text" onkeypress="addResponse(event)"/></br>
+		<div id="gamesDatabase" >
+		</div>   
+    </div>
+	
+	  </article>
 </section>
 <footer>
   <p>@byEmilia</p>
 </footer>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+	function addResponse(e){
+		if(e.which == 13 && !e.shiftKey) { 
+			e.preventDefault();
+			getGames(document.getElementById("info").value);
+
+		}
+	}
+    //Retreive all games from the database
+    function getGames(x){
+		  text = "<table id='gamesDatabase'>  <tr >"+
+    "<th >Nazwa</th><th >Autor</th> <th >Czas gry</th> <th >Wiek</th><th>Liczba graczy</th> <th>Opis</th></tr>"
+          $.get("./api/games?text="+x)
+              .done(function(data) {
+                  if(data.length > 0) {
+                    data.forEach(function(element, index) {
+                      text = text+"<tr ><td >"+element.title+"</td><td >"+
+					  element.author+"</td><td >"+
+					  element.time_from+"-"+element.time_to+"</td><td >"+
+					  element.age_from+"-"+element.age_to+"</td><td >"+
+					  element.players_from+"-"+element.players_to+"</td><td >"+
+					  element.description+"</td>  </tr>"
+                    });
+					
+                    $('#gamesDatabase').html(text +"</table>");
+                  }
+          });
+    }
+	getGames("");
+
+
+    </script>
 </body>
 
 </html>
