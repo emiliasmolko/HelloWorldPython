@@ -49,10 +49,15 @@ def home():
 @app.route('/api/games', methods=['GET'])
 def get_games():
     if client:
-        query = Query(db, selector={'_id': {'$gt': 0}})
+        text = request.args.get('text')
+        query = None
+        if text and len(text)>3:
+            query = Query(db, selector={"$text": text})
+        else:
+            query = Query(db, selector={'_id': {"$gt": 0}})
         dataFromDb = [];
         for doc in query()['docs']:
-            dataFromDb.append(doc);			
+            dataFromDb.append(doc);
             print(doc);
         return jsonify(dataFromDb);
     else:
