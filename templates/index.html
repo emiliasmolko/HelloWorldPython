@@ -16,7 +16,8 @@
 <section>
  <nav>
     <ul>
-      <li><a href="#gamesDatabase" >List of boardgames</a></li>
+      <li><a href="#gamesDatabase" onClick='show("gamesList","gameInput")'>List of games</a></li>
+      <li><a href="#gameInput" onClick='show("gameInput", "gamesList")'>Add new game</a></li>
     </ul>
   </nav>
   <article>
@@ -26,15 +27,64 @@
 		<div id="gamesDatabase" >
 		</div>   
     </div>
-	
+    <div id="gameInput">
+            <h2>To add new boardgame, define some information:</h2>
+			<table id="gameInputTable">
+			<tr><td>Name of game: </td><td><input id="title" type="text" value="" /></td></tr>
+			<tr><td>Author: </td><td><input id="author" type="text"  value="" /></td></tr><!--
+			<tr><td>Małe zdjęcie: </td><td><input type="file" name="ikona" accept="image/*"></td></tr>-->
+			<tr><td>Age of players: </td><td> from <input id="age_from" type="number"  min="1" max="99"  value="4" /> years to <input id="age_to" type="number"  min="2" max="99"  value="99" /> lat </td></tr>
+			<tr><td>Number of players: </td><td> from <input id="players_from" type="number"  min="1" max="99" value="2" /> to
+			<input id="players_to" type="number"  min="1" max="99"   value="4" /></td></tr>
+			<tr><td>Tome of play: </td><td> from <input id="time_from" type="number"  min="1" value="15" /> minutes to
+			<input id="time_to" type="number"  min="1" value="60" /> minutes</td></tr>
+			<tr><td>Description:</td><td><textarea  id="description" rows="5" cols="50"  value="" ></textarea></td></tr>
+			<tr><td><button  id="zapisz">Save</button></td></tr>
+			</table>
+			<p id="response" class="lead text-center"></p>
+        </div>	
 	  </article>
 </section>
 <footer>
   <p>@byEmilia</p>
 </footer>
-    <!-- jQuery -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="static/antixss.js" type="text/javascript"></script>
     <script>
+	function show(id1,id2) {
+		document.getElementById(id1).style.display = "block";
+		document.getElementById(id2).style.display = "none";
+
+	}
+        $('#zapisz').click(function(e) {
+        	var title = $('#title').val();
+			var author = $('#author').val();
+			var age_from = $('#age_from').val();
+			var age_to = $('#age_to').val();
+			
+			var players_from = $('#players_from').val();
+			var players_to = $('#players_to').val();
+			var time_from = $('#time_from').val();
+			var time_to = $('#time_to').val();
+			var description = $('#description').val();
+			
+            if (title.length > 0) { 
+                $.ajax({
+				  method: "POST",
+				  url: "./api/games",
+				  contentType: "application/json",
+				  data: JSON.stringify({age_from: age_from, age_to: age_to, author: author, description: description, players_from: players_from, players_to: players_to, time_from: time_from, 
+					time_to: time_to, title: title})
+				})
+                .done(function(data) {
+                    $('#response').html(AntiXSS.sanitizeInput(data));
+                    getGames();
+                });
+            }
+        });
 	function addResponse(e){
 		if(e.which == 13 && !e.shiftKey) { 
 			e.preventDefault();
@@ -62,7 +112,8 @@
                   }
           });
     }
-	getGames("");
+    show("gamesList","gameInput")
+    getGames("");
 
 
     </script>
