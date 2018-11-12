@@ -64,6 +64,30 @@ def get_games():
         print('No database')
         return jsonify([])
 
+
+@app.route('/api/games', methods=['POST'])
+def put_game():
+	if client:
+		age_from = request.json['age_from']
+		age_to = request.json['age_to']
+		title = request.json['title']
+		author = request.json['author']
+		description = request.json['description']
+		players_from = request.json['players_from']
+		players_to = request.json['players_to']
+		time_from = request.json['time_from']
+		time_to = request.json['time_to']
+	
+		db.create_document({"age_from": age_from, "age_to": age_to, "author": author, 
+		"description": description,"players_from": players_from, 
+		"players_to": players_to, "time_from": time_from, 
+		"time_to": time_to, "title": title
+		})
+		return 'Game ' +title+' saved in repository.'
+	else:
+		print('No database')
+		return 'Do not have access to repository!'
+
 @atexit.register
 def shutdown():
     if client:
