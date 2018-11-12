@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Strona moich gier planszowych</title>
+    <title>My boardgames page</title>
     <link href="static/styles.css" rel="stylesheet">
 </head>
 
@@ -11,18 +11,18 @@
 <header>
 <a href="https://www.uniwersytetdzieci.pl/"> 
 <img src="static/ud-logo.png" alt="Uniwersytet Dzieci"></a> 
-<h2>Strona moich gier planszowych</h2>
+<h2>My boardgames page</h2>
 </header>
 <section>
  <nav>
     <ul>
-      <li><a href="#gamesDatabase" >Lista gier</a></li>
+      <li><a href="#gamesDatabase" >List of boardgames</a></li>
     </ul>
   </nav>
   <article>
     <div id="gamesList">
-		<h2>Zgromadziłam informacje o grach, w które kiedyś grałam lub chcę zagarać.</h2> </br>
-		Jeśli szukasz czegoś szczególnego <input id="info" placeholder="Pisz tutaj..." type="text" onkeypress="addResponse(event)"/></br>
+		<h2>This is collection of boardgames I have played or I would like to play.</h2> </br>
+		If you look for something special <input id="info" placeholder="Write here..." type="text" onkeypress="addResponse(event)"/></br>
 		<div id="gamesDatabase" >
 		</div>   
     </div>
@@ -45,7 +45,7 @@
     //Retreive all games from the database
     function getGames(x){
 		  text = "<table id='gamesDatabase'>  <tr >"+
-    "<th >Nazwa</th><th >Autor</th> <th >Czas gry</th> <th >Wiek</th><th>Liczba graczy</th> <th>Opis</th></tr>"
+    "<th >Name</th><th >Author</th> <th >Time of play</th> <th >Age</th><th>Number of players</th> <th>Description</th></tr>"
           $.get("./api/games?text="+x)
               .done(function(data) {
                   if(data.length > 0) {
