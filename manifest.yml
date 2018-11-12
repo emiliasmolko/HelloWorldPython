@@ -1,5 +1,10 @@
----
+declared-services: 
+  gamesdb-cloudantNoSQLDB:
+    label: cloudantNoSQLDB 
+    plan: Lite 
 applications:
  - name: HelloWorldPython
    host: Emilia
    memory: 128M
+   services:
+   - gamesdb-cloudantNoSQLDB
