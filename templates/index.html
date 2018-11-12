@@ -81,7 +81,7 @@
 				})
                 .done(function(data) {
                     $('#response').html(AntiXSS.sanitizeInput(data));
-                    getGames();
+                    getGames("");
                 });
             }
         });
