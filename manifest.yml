@@ -1,5 +1,6 @@
 applications:
  - name: HelloWorldPython
-   host: Emilia1
-   memory: 128M
-
+   routes: 
+   - route: emilia.eu-de.mybluemix.net
+   memory: 64M
+   
