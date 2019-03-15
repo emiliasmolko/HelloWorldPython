@@ -2,5 +2,5 @@ applications:
  - name: HelloWorldPython
    buildpack: python_buildpack
    routes: 
-   - route: emilia1.eu-de.mybluemix.net
+   - route: emilia.eu-de.mybluemix.net
    memory: 64M  
