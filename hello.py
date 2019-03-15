@@ -1,9 +1,5 @@
 from flask import Flask, render_template, request
-import cf_deployment_tracker
 import os
-
-# Emit Bluemix deployment event
-cf_deployment_tracker.track()
 
 app = Flask(__name__)
 
