@@ -1,6 +1,12 @@
+declared-services: 
+  gamesdb-cloudantNoSQLDB:
+    label: cloudantNoSQLDB 
+    plan: Lite 
 applications:
  - name: HelloWorldPython
    buildpack: python_buildpack
    routes: 
    - route: emilia.eu-de.mybluemix.net
-   memory: 64M  
+   memory: 64M
+   services:
+   - gamesdb-cloudantNoSQLDB
